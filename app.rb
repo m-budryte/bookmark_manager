@@ -1,5 +1,7 @@
 require 'sinatra/base'
 require './lib/bookmark.rb'
+require 'pg'
+
 class BookmarkManager < Sinatra::Base
   # enable :sessions
   # configure(:development) { set :session_secret, "something" }
