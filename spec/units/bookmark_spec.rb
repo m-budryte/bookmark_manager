@@ -6,6 +6,10 @@ describe Bookmark do
   end
 
   it 'returns an array' do
-    expect(bookmarks.all).to eq(["www.google.com"])
+    expect(bookmarks.all).to include("http://www.google.com")
+  end
+
+  it 'returns extra links e.g. twitter' do
+    expect(bookmarks.all).to include("http://www.twitter.com")
   end
 end
