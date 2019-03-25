@@ -1,0 +1,28 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/budros/Projects/MAKERS/week_challenges/bookmark_manager/app.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/budros/Projects/MAKERS/week_challenges/bookmark_manager/spec/features/view_bookmark_spec.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1553524285
+  }
+}
