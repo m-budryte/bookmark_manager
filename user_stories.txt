@@ -1,3 +1,7 @@
 As a user
 To see my favourite websites
 I want an app that shows a list of my bookmarks
+
+As a user
+To save my fav websites
+I want to be able to save bookmarks
