@@ -9,3 +9,7 @@ I want to be able to save bookmarks
 As a user
 So I can no longer see irrelevant bookmarks
 I want to be able to delete bookmarks
+
+As a user
+So I can change a bookmark in bookmark manager
+I want to update a bookmark
