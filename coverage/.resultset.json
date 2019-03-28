@@ -96,7 +96,6 @@
       "/Users/budros/Projects/MAKERS/week_challenges/bookmark_manager/lib/database_connection.rb": [
         1,
         1,
-        1,
         4,
         null,
         null,
@@ -129,7 +128,9 @@
         1,
         null,
         1,
+        null,
         1,
+        null,
         1,
         null,
         1,
@@ -273,6 +274,6 @@
         null
       ]
     },
-    "timestamp": 1553705626
+    "timestamp": 1553782227
   }
 }

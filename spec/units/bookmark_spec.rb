@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'bookmark'
 describe Bookmark do
   subject(:bookmarks) { described_class }
   it 'returns a list of bookmarks' do
     connection = PG.connect(dbname: 'bookmark_manager_test')
 
-    bookmark = Bookmark.add(url: "http://www.makersacademy.com", title: "Makers Academy")
-    Bookmark.add(url: "http://www.destroyallsoftware.com", title: "Destroy All Software")
-    Bookmark.add(url: "http://www.google.com", title: "Google")
+    bookmark = Bookmark.add(url: 'http://www.makersacademy.com', title: 'Makers Academy')
+    Bookmark.add(url: 'http://www.destroyallsoftware.com', title: 'Destroy All Software')
+    Bookmark.add(url: 'http://www.google.com', title: 'Google')
 
     bookmarks = Bookmark.all
 
@@ -58,5 +60,4 @@ describe Bookmark do
       expect(result.url).to eq 'http://www.makersacademy.com'
     end
   end
-
 end

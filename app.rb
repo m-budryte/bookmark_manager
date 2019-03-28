@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra/base'
 require './lib/bookmark.rb'
 require 'pg'
@@ -5,7 +7,7 @@ require './lib/database_connection_setup.rb'
 
 class BookmarkManager < Sinatra::Base
   enable :sessions, :method_override
-  configure(:development) { set :session_secret, "something" }
+  configure(:development) { set :session_secret, 'something' }
 
   get '/bookmarks' do
     @bookmarks = Bookmark.all
