@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 require 'sinatra/base'
-require './lib/bookmark.rb'
+require 'sinatra/flash'
 require 'pg'
+require './lib/bookmark.rb'
 require './lib/database_connection_setup.rb'
+require 'uri'
+
 
 class BookmarkManager < Sinatra::Base
   enable :sessions, :method_override
+  register Sinatra::Flash
   configure(:development) { set :session_secret, 'something' }
 
   get '/bookmarks' do
@@ -19,7 +23,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/bookmarks' do
-    Bookmark.add(url: params[:url], title: params[:title])
+    flash[:notice] = 'Invalid url!' unless Bookmark.add(url: params['url'], title: params['title'])
     redirect '/bookmarks'
   end
 

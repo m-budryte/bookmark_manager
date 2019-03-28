@@ -2,6 +2,7 @@
 
 require 'bookmark'
 describe Bookmark do
+  connection = PG.connect(dbname: 'bookmark_manager_test')
   subject(:bookmarks) { described_class }
   it 'returns a list of bookmarks' do
     connection = PG.connect(dbname: 'bookmark_manager_test')
@@ -20,11 +21,17 @@ describe Bookmark do
   end
 
   describe '#add' do
+    connection = PG.connect(dbname: 'bookmark_manager_test')
     it 'creates a new bookmark' do
-      bookmark = Bookmark.add(url: 'http://twitter.com', title: 'Twitter')
+      bookmark = Bookmark.add(url:'http://twitter.com', title: 'Twitter')
 
       expect(bookmark.url).to eq 'http://twitter.com'
       expect(bookmark.title).to eq 'Twitter'
+    end
+
+    it 'doesnot create a new bookmark if the url is not valid' do
+      bookmark = Bookmark.add(url: 'not a real bookmark', title: 'not a real bookmark')
+      expect(Bookmark.all).not_to include bookmark
     end
   end
 
