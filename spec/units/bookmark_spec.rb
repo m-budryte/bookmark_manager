@@ -1,13 +1,12 @@
 # frozen_string_literal: true
-
+require 'database_helpers'
 require 'bookmark'
 describe Bookmark do
   connection = PG.connect(dbname: 'bookmark_manager_test')
   subject(:bookmarks) { described_class }
   it 'returns a list of bookmarks' do
-    connection = PG.connect(dbname: 'bookmark_manager_test')
-
     bookmark = Bookmark.add(url: 'http://www.makersacademy.com', title: 'Makers Academy')
+    persisted_data = persisted_data(id: bookmark.id, table: 'bookmarks')
     Bookmark.add(url: 'http://www.destroyallsoftware.com', title: 'Destroy All Software')
     Bookmark.add(url: 'http://www.google.com', title: 'Google')
 
@@ -18,6 +17,7 @@ describe Bookmark do
     expect(bookmarks.first.id).to eq bookmark.id
     expect(bookmarks.first.title).to eq 'Makers Academy'
     expect(bookmarks.first.url).to eq 'http://www.makersacademy.com'
+    expect(bookmark.id).to eq persisted_data.first['id']
   end
 
   describe '#add' do
@@ -67,4 +67,15 @@ describe Bookmark do
       expect(result.url).to eq 'http://www.makersacademy.com'
     end
   end
+
+let(:comment_class) { double(:comment_class) }
+
+describe '#comments' do
+  it 'calls .where on the Comment class' do
+    bookmark = Bookmark.add(title: 'Makers Academy', url: 'http://www.makersacademy.com')
+    expect(comment_class).to receive(:where).with(bookmark_id: bookmark.id)
+
+    bookmark.comments(comment_class)
+  end
+end
 end

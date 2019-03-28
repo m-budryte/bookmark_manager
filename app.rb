@@ -6,6 +6,7 @@ require 'pg'
 require './lib/bookmark.rb'
 require './lib/database_connection_setup.rb'
 require 'uri'
+require './lib/comment.rb'
 
 
 class BookmarkManager < Sinatra::Base
@@ -35,6 +36,16 @@ class BookmarkManager < Sinatra::Base
   get '/bookmarks/:id/edit' do
     @bookmark = Bookmark.find(id: params[:id])
     erb :'bookmarks/edit'
+  end
+
+  get '/bookmarks/:id/comments/new' do
+    @bookmark_id = params[:id]
+    erb :'comments/new'
+  end
+
+  post '/bookmarks/:id/comments' do
+    Comment.add(text: params[:comment], bookmark_id: params[:id])
+    redirect '/bookmarks'
   end
 
   patch '/bookmarks/:id' do
